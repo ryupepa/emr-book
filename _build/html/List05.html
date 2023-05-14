@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1 F-тест: значимость регрессии &#8212; My sample book</title>
+    <title>F-тест: значимость регрессии &#8212; My sample book</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'List05';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="$\( P(\hat{\beta_1} - t_{cr}\cdot s_1 &lt; \beta &lt; \hat{\beta_1} + t_{cr} \cdot s_1) = \gamma \)$" href="List06.html" />
-    <link rel="prev" title="Решение задачи 1.1 из Листка 04" href="List04.html" />
+    <link rel="next" title="Доверительные интервалы" href="List06.html" />
+    <link rel="prev" title="Значимость коэффициентов. Тест Стьюдента" href="List04.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,11 +161,11 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="OLS_3D.html">OLS: 3D case</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SleepEq1.html">Sleep Equation (Модель1)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List04.html">Решение задачи 1.1 из Листка 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List04.html">Значимость коэффициентов. Тест Стьюдента</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">F-тест: значимость регрессии</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List06.html">Доверительные интервалы</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1 F-тест: значимость регрессии</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List06.html">$<span class="math notranslate nohighlight">\( P(\hat{\beta_1} - t_{cr}\cdot s_1 &lt; \beta &lt; \hat{\beta_1} + t_{cr} \cdot s_1) = \gamma \)</span>$</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List07.html">Предсказанные значение (fitted) вычисляюся с помощью формулы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List07.html">Прогнозирование</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="List8_fixed.html">Листок 8: Мультиколлинеарность</a></li>
 
@@ -175,7 +175,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="dummies-categorial.html">Бинарные переменные: категориальные переменные</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List10.html">1.3 Output equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List10.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List12.html">Серийная корреляция</a></li>
 </ul>
 
     </div>
@@ -359,7 +360,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1 F-тест: значимость регрессии</h1>
+    <h1>F-тест: значимость регрессии</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,7 +391,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="f">
+<h1>F-тест: значимость регрессии<a class="headerlink" href="#f" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -402,8 +405,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="f">
-<h1>1 F-тест: значимость регрессии<a class="headerlink" href="#f" title="Permalink to this heading">#</a></h1>
 <section id="t">
 <h2>1.2 Значимость некоторых регрессоров. t-тест.<a class="headerlink" href="#t" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1204,10 +1205,10 @@ F_{cr} = F(\alpha; q, DF)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f83a802b730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fe6981d4cd0&gt;
 </pre></div>
 </div>
-<img alt="_images/eddc3263f8c8f86dcbfba29c868c01c507c5a535d4bd634f673e93fb97d9e5db.png" src="_images/eddc3263f8c8f86dcbfba29c868c01c507c5a535d4bd634f673e93fb97d9e5db.png" />
+<img alt="_images/e3d7503aca50f21e199532ba61c29207a52835cd8ebe2a2fb050e8e83ad952c3.png" src="_images/e3d7503aca50f21e199532ba61c29207a52835cd8ebe2a2fb050e8e83ad952c3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1313,7 +1314,7 @@ F \sim_{H_0} F_{m, n_1 + n_2-2m}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Решение задачи 1.1 из Листка 04</p>
+        <p class="prev-next-title">Значимость коэффициентов. Тест Стьюдента</p>
       </div>
     </a>
     <a class="right-next"
@@ -1321,7 +1322,7 @@ F \sim_{H_0} F_{m, n_1 + n_2-2m}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">$<span class="math notranslate nohighlight">\( P(\hat{\beta_1} - t_{cr}\cdot s_1 &lt; \beta &lt; \hat{\beta_1} + t_{cr} \cdot s_1) = \gamma \)</span>$</p>
+        <p class="prev-next-title">Доверительные интервалы</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси &#8212; My sample book</title>
+    <title>Гетероскедастичность &#8212; My sample book</title>
   
   
   
@@ -159,11 +159,11 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="OLS_3D.html">OLS: 3D case</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SleepEq1.html">Sleep Equation (Модель1)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List04.html">Решение задачи 1.1 из Листка 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List04.html">Значимость коэффициентов. Тест Стьюдента</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List05.html">F-тест: значимость регрессии</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List06.html">Доверительные интервалы</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="List05.html">1 F-тест: значимость регрессии</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List06.html">$<span class="math notranslate nohighlight">\( P(\hat{\beta_1} - t_{cr}\cdot s_1 &lt; \beta &lt; \hat{\beta_1} + t_{cr} \cdot s_1) = \gamma \)</span>$</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List07.html">Предсказанные значение (fitted) вычисляюся с помощью формулы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List07.html">Прогнозирование</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="List8_fixed.html">Листок 8: Мультиколлинеарность</a></li>
 
@@ -173,7 +173,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="dummies-categorial.html">Бинарные переменные: категориальные переменные</a></li>
-<li class="toctree-l1"><a class="reference internal" href="List10.html">1.3 Output equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List10.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List12.html">Серийная корреляция</a></li>
 </ul>
 
     </div>
@@ -357,7 +358,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси</h1>
+    <h1>Гетероскедастичность</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -367,10 +368,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Другими словами, значимость вспомогательной регресси в целом, т.е.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-r-0-2">При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Гетероскедастичность</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Другими словами, значимость вспомогательной регресси в целом, т.е.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-r-0-2">При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-equation">2.1. Output equation</a><ul class="visible nav section-nav flex-column">
@@ -390,7 +394,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Гетероскедастичность<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -447,8 +453,8 @@ e_i^2 = \gamma_0 + \gamma_1*totwrk+age+\gamma_2*I(age**2)+\gamma_3*male+\gamma_3
 </div>
 </div>
 </div>
-<section id="id1">
-<h1>Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2>Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 H_0: \sigma_i^2 \equiv \sigma^2=f(\gamma_0),
@@ -457,8 +463,8 @@ H_0: \sigma_i^2 \equiv \sigma^2=f(\gamma_0),
 \[
 H_1:\sigma_i^2 = f(\gamma_0 + z_{i1}\gamma_1 + z_{i2}*\gamma_2 + \dots + \gamma_{ip}\gamma_p).
 \]</div>
-<section id="id2">
-<h2>Другими словами, значимость вспомогательной регресси в целом, т.е.<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h3>Другими словами, значимость вспомогательной регресси в целом, т.е.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 H_0: \gamma_1=\gamma_2=\gamma_3=\gamma_4=\gamma_5=\gamma_6=0,
@@ -469,7 +475,7 @@ H_1:  \gamma_1^2+\gamma_2^2+\gamma_3^2+\gamma_4^2+\gamma_5^2+\gamma_6^2&gt;0.
 \]</div>
 </section>
 <section id="n-r-0-2">
-<h2>При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:<a class="headerlink" href="#n-r-0-2" title="Permalink to this heading">#</a></h2>
+<h3>При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:<a class="headerlink" href="#n-r-0-2" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 nR_0^2 \approx_{H_0} \chi^2_p
@@ -505,8 +511,9 @@ nR_0^2 \approx_{H_0} \chi^2_p
 nR_0^2 &lt; \chi_p^2.
 \]</div>
 </section>
-<section id="id3">
-<h2>Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<section id="id4">
+<h3>Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="output-equation">
@@ -755,10 +762,13 @@ d_i = min\{4, h_{ii}/\bar{h}\},\\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Другими словами, значимость вспомогательной регресси в целом, т.е.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-r-0-2">При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Гетероскедастичность</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Сформулируем проверямемую гипотезу, о характере зависимости дисперсии ошибок от факторов регресси</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Другими словами, значимость вспомогательной регресси в целом, т.е.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-r-0-2">При справедливости нулевой гипотезы статистика <span class="math notranslate nohighlight">\(n*R_0^2 \)</span> имеет распределение хи-квадрат:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Нет оснований отвергнуть нулевую гипотезу. Тест указывает на гомоскедастичность.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-equation">2.1. Output equation</a><ul class="visible nav section-nav flex-column">
