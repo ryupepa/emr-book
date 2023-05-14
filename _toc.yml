@@ -4,6 +4,9 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: OLS_3D 
+- file: SleepEq1 
+- file: Linear_regresion_List03  
+- file: List04
+- file: List05
+- file: List06 
