@@ -2,17 +2,37 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-title: Эконометрика. Кафедра МЭИТ МГИМО МИД России
 root: intro
-chapters:
-- file: OLS_3D
-- file: SleepEq1
-- file: List04
-- file: List05
-- file: List06
-- file: List07
-- file: List8_fixed
-- file: dummies-categorial
-- file: List10
-- file: List11
-- file: List12
+title: Эконометрика. Кафедра МЭИТ МГИМО МИД России
+parts:
+  - caption: Эконометрика 1
+    numbered: True  # Only applies to chapters in Part 1.
+        chapters:
+        - file: OLS_3D
+        - file: SleepEq1
+        - file: List04
+        - file: List05
+        - file: List06
+        - file: List07
+        - file: List8_fixed
+        - file: dummies-categorial
+        - file: List10
+        - file: List11
+        - file: List12
+  - caption: Эконометрика 2
+#     chapters:
+#     - file: path/to/part2/chapter1
+#     - file: path/to/part2/chapter2
+    
+# chapters:
+# - file: OLS_3D
+# - file: SleepEq1
+# - file: List04
+# - file: List05
+# - file: List06
+# - file: List07
+# - file: List8_fixed
+# - file: dummies-categorial
+# - file: List10
+# - file: List11
+# - file: List12
