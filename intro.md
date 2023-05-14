@@ -1,13 +1,35 @@
-# Welcome to your Jupyter Book
+# Задачи по Эконометрике-1
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-'''
-e = mc^2
-'''
-Check out the content pages bundled with this sample book to see more.
+- [Листок 01](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List01-OLS.html): OLS ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List01))
+- [Листок 02](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List02-Coefs.html): Интерпретация коэффициентов ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List02))
+- [Листок 03](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List03-Goodness-of-Fit.html): Степень подгонки ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List03))([YouTube](https://youtu.be/GCCkKcmUPrE))
+- [Листок 04](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List04-t-test.html): t-тест ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List04))([YouTube](https://youtu.be/7bmMAxXrOTk))
+- [Листок 05](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List05-F-test.html): F-тест ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List05)) 
+- [Листок 06](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List06-ConfIntervals.html): Доверительные интервалы ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List06))([YouTube](https://youtu.be/aJaY0mWsOSY))
+- [Листок 07](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List07-Prediction.html): Прогнозирование([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List07)) 
+- [Листок 08](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List08-Multicollinearity.html): Мультиколлинеарность([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List08)) 
+- [Листок 09](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List09-Dummies.html): Дамми-переменные([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List09)) 
+- [Листок 10](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List10-Specification.html): Спецификация ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List10)) 
+- [Листок 11](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List11-Heteroskedasticity.html): Гетероскедастичность ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List11)) 
+- [Листок 12](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи/List12-Autocorrelation.html): Серийная корреляция ([Jupyter Notebooks](https://github.com/artamonoff/Econometrica/tree/master/python-notebooks/List12)) 
 
-```{tableofcontents}
-```
+# Задачи по Эконометрике-2
+
+- [Листок 21](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List21-LPM.html): LPM-модель
+- [Листок 22](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List22-LogitProbit.html): Logit/Probit-модель
+- [Листок 23](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List23-Goodness-Of-Fit.html): Степень подгонки модель
+- [Листок 24](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List24-Prediction.html): Прогнозирвоание
+- [Листок 25](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List25-MarginalValues.html): Предельные значения
+- [Листок 26](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List26-ROC.html): ROC-кривая
+- [Листок 27](https://nbviewer.org/github/artamonoff/Econometrica/blob/master/Задачи2/List27-Panels.html): Панельные регрессии
+
+# Статистические таблицы
+
+Таблицы критических значений ([PDF](https://github.com/artamonoff/Econometrica/blob/master/Stat%20Tables/CriticalValues.pdf))
+
+# Описание учебных данных
+
+Описание датасетов ([PDF](https://github.com/artamonoff/Econometrica/blob/master/data-description/Datasets.pdf))
+
+Больше датасетов можно найти [здесь](https://github.com/vincentarelbundock/Rdatasets)
+
