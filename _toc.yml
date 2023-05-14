@@ -7,3 +7,14 @@ chapters:
 - file: markdown
 - file: notebooks
 - file: markdown-notebooks
+- file: OLS_3D
+- file: SleepEq1
+- file: List04
+- file: List05
+- file: List06
+- file: List07
+- file: List8_fixed
+- file: dummies-categorial
+- file: List10
+- file: List11
+- file: List12
