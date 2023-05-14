@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Листок 8: Мультиколлинеарность &#8212; My sample book</title>
+    <title>Мультиколлинеарность &#8212; My sample book</title>
   
   
   
@@ -143,8 +143,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/mgimo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/mgimo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -160,20 +160,14 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="OLS_3D.html">OLS: 3D case</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SleepEq1.html">Sleep Equation (Модель1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SleepEq1.html">Sleep Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="List04.html">Значимость коэффициентов. Тест Стьюдента</a></li>
 <li class="toctree-l1"><a class="reference internal" href="List05.html">F-тест: значимость регрессии</a></li>
 <li class="toctree-l1"><a class="reference internal" href="List06.html">Доверительные интервалы</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="List07.html">Прогнозирование</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Листок 8: Мультиколлинеарность</a></li>
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Мультиколлинеарность</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dummies-categorial.html">Бинарные переменные: категориальные переменные</a></li>
 <li class="toctree-l1"><a class="reference internal" href="List10.html">Спецификация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="List12.html">Серийная корреляция</a></li>
@@ -360,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Листок 8: Мультиколлинеарность</h1>
+    <h1>Мультиколлинеарность</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,25 +364,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Листок 8: Мультиколлинеарность</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ссылка на листки, ноутбуки и данные</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -399,15 +389,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="id1">
-<h1>Листок 8: Мультиколлинеарность<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Мультиколлинеарность<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <section id="id2">
 <h2>Ссылка на листки, ноутбуки и данные<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><a class="github reference external" href="https://github.com/artamonoff/Econometrica">artamonoff/Econometrica</a></p>
 </section>
-</section>
 <section id="id3">
-<h1>Ссылки на документацию<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<h2>Ссылки на документацию<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.html#statsmodels.regression.linear_model.OLSResults">https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.html#statsmodels.regression.linear_model.OLSResults</a></p>
 <p><a class="reference external" href="https://tedboy.github.io/statsmodels_doc/index.html">https://tedboy.github.io/statsmodels_doc/index.html</a></p>
 <div class="cell docutils container">
@@ -428,10 +417,10 @@ document.write(`
 </div>
 </section>
 <section id="sleep-equation-1">
-<h1>1 sleep equation #1<a class="headerlink" href="#sleep-equation-1" title="Permalink to this heading">#</a></h1>
+<h2>1 sleep equation #1<a class="headerlink" href="#sleep-equation-1" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="vifs">
-<h1>1.1 VIFs<a class="headerlink" href="#vifs" title="Permalink to this heading">#</a></h1>
+<h2>1.1 VIFs<a class="headerlink" href="#vifs" title="Permalink to this heading">#</a></h2>
 <p>Для набора данных <code class="docutils literal notranslate"><span class="pre">sleep75</span></code> рассмотрим линейную регрессию</p>
 <p><strong>sleep на totwrk/100, totwrk^2/10000, age, smsa, male, south</strong>.</p>
 <p>Какие регрессии нужно рассматривать для вычисления показателей VIF для коэффициентов
@@ -637,7 +626,7 @@ Standard errors in parentheses.
 </div>
 </section>
 <section id="id4">
-<h1>1.2 Последствия<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h1>
+<h2>1.2 Последствия<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>Для набора данных <code class="docutils literal notranslate"><span class="pre">sleep75</span></code> рассмотрим линейную регрессию
 <strong>sleep на totwrk/100, totwrk^2/10000, age, smsa, male</strong>.</p>
 <p>Результаты оценивания:</p>
@@ -791,14 +780,14 @@ Standard errors in parentheses.
 </div></div></div>
 </div>
 <section id="age-smsa-male">
-<h2>На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”<a class="headerlink" href="#age-smsa-male" title="Permalink to this heading">#</a></h2>
+<h3>На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”<a class="headerlink" href="#age-smsa-male" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 <section id="id5">
-<h1>Тестируется значимость влияния занятости, т.е. гипотеза<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h1>
+<h2>Тестируется значимость влияния занятости, т.е. гипотеза<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="h-0-beta-totwrk-100-beta-totwrk-2-10000-0">
-<h1><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.<a class="headerlink" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0" title="Permalink to this heading">#</a></h1>
+<h2><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.<a class="headerlink" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># тестовая F_stat</span>
@@ -828,7 +817,7 @@ Standard errors in parentheses.
 </div>
 </div>
 <section id="f-stat-f-crit">
-<h2>Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.<a class="headerlink" href="#f-stat-f-crit" title="Permalink to this heading">#</a></h2>
+<h3>Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.<a class="headerlink" href="#f-stat-f-crit" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#VIFs</span>
@@ -1000,7 +989,7 @@ Standard errors in parentheses.
 <p>Документация: <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.heatmap.html">https://seaborn.pydata.org/generated/seaborn.heatmap.html</a></p>
 </section>
 <section id="id6">
-<h2>“Продвинутая” визуализация корреляций<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h3>“Продвинутая” визуализация корреляций<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df_sleep</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -1107,6 +1096,7 @@ Standard errors in parentheses.
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.formats.style.Styler.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.formats.style.Styler.html</a></p>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1175,25 +1165,21 @@ Standard errors in parentheses.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Листок 8: Мультиколлинеарность</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ссылка на листки, ноутбуки и данные</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
