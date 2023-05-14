@@ -1,0 +1,1251 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Листок 8: Мультиколлинеарность &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'List8_fixed';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Бинарные переменные: категориальные переменные" href="dummies-categorial.html" />
+    <link rel="prev" title="Предсказанные значение (fitted) вычисляюся с помощью формулы" href="List07.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OLS_3D.html">OLS: 3D case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SleepEq1.html">Sleep Equation (Модель1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List04.html">Решение задачи 1.1 из Листка 04</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="List05.html">1 F-тест: значимость регрессии</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List06.html">$<span class="math notranslate nohighlight">\( P(\hat{\beta_1} - t_{cr}\cdot s_1 &lt; \beta &lt; \hat{\beta_1} + t_{cr} \cdot s_1) = \gamma \)</span>$</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List07.html">Предсказанные значение (fitted) вычисляюся с помощью формулы</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Листок 8: Мультиколлинеарность</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dummies-categorial.html">Бинарные переменные: категориальные переменные</a></li>
+<li class="toctree-l1"><a class="reference internal" href="List10.html">1.3 Output equation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FList8_fixed.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/List8_fixed.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Листок 8: Мультиколлинеарность</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Листок 8: Мультиколлинеарность</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ссылка на листки, ноутбуки и данные</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="id1">
+<h1>Листок 8: Мультиколлинеарность<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2>Ссылка на листки, ноутбуки и данные<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p><a class="github reference external" href="https://github.com/artamonoff/Econometrica">artamonoff/Econometrica</a></p>
+</section>
+</section>
+<section id="id3">
+<h1>Ссылки на документацию<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.html#statsmodels.regression.linear_model.OLSResults">https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.html#statsmodels.regression.linear_model.OLSResults</a></p>
+<p><a class="reference external" href="https://tedboy.github.io/statsmodels_doc/index.html">https://tedboy.github.io/statsmodels_doc/index.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span> 
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.iolib.summary2</span> <span class="kn">import</span> <span class="n">summary_params</span> <span class="c1"># вывод результатов тестирования</span>
+<span class="kn">from</span> <span class="nn">statsmodels.iolib.summary2</span> <span class="kn">import</span> <span class="n">summary_col</span> <span class="c1"># вывод результатов тестирования</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span> <span class="c1"># VIF</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sleep-equation-1">
+<h1>1 sleep equation #1<a class="headerlink" href="#sleep-equation-1" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="vifs">
+<h1>1.1 VIFs<a class="headerlink" href="#vifs" title="Permalink to this heading">#</a></h1>
+<p>Для набора данных <code class="docutils literal notranslate"><span class="pre">sleep75</span></code> рассмотрим линейную регрессию</p>
+<p><strong>sleep на totwrk/100, totwrk^2/10000, age, smsa, male, south</strong>.</p>
+<p>Какие регрессии нужно рассматривать для вычисления показателей VIF для коэффициентов
+<strong>totwrk, totwrk^2, male</strong>?</p>
+<p>Ответ</p>
+<ul class="simple">
+<li><p><strong>totwrk/100 на totwrk^2/10000, age, smsa, male, south</strong></p></li>
+<li><p><strong>totwrk^2/10000 на totwrk/100, age, smsa, male, south</strong></p></li>
+<li><p><strong>male на totwrk/100, totwrk^2/10000, age, smsa, south</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_sleep</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/artamonoff/Econometrica/master/python-notebooks/data-csv/sleep75.csv&#39;</span><span class="p">)</span>
+<span class="n">data_sleep</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(706, 34)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Модель sleep на totwrk/100, totwrk^2/10000, age, smsa, male, south</span>
+<span class="n">Sleep_eq11</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;sleep~I(totwrk/100)+I(totwrk**2/10000)+age+smsa+male+south&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Модель 1:  totwrk/100 на totwrk^2/10000, age, smsa, male, south</span>
+<span class="c1"># Создаем спецификацию модели через формулу и подгоняем модель</span>
+<span class="n">model_11</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;I(totwrk/100)~I(totwrk**2/10000)+age+smsa+male+south&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Модель 2: totwrk^2/10000 на totwrk/100, age, smsa, male, south</span>
+<span class="c1"># Создаем спецификацию модели через формулу и подгоняем модель</span>
+<span class="n">model_12</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;I(totwrk**2/10000)~I(totwrk/100)+age+smsa+male+south&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Модель 3: male на totwrk/100, totwrk^2/10000, age, smsa, south</span>
+<span class="c1"># Создаем спецификацию модели через формулу и подгоняем модель</span>
+<span class="n">model_13</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;male~I(totwrk/100)+I(totwrk**2/10000)+age+smsa+south&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Результаты подгонки</span>
+<span class="c1"># info_dict = {&#39;No. Observations&#39;: lambda x: &#39;{0:d}&#39;.format(int(x.nobs)), </span>
+<span class="c1">#              &#39;R-squared&#39;: lambda x: &quot;%#8.3f&quot; % x.rsquared,</span>
+<span class="c1">#              &#39;Adj. R-squared&#39;: lambda x: &quot;%#8.3f&quot; % x.rsquared_adj,</span>
+<span class="c1">#              &#39;Residual Std. Error&#39;: lambda x: &quot;%#8.3f&quot; % x.mse_resid**0.5,</span>
+<span class="c1">#              &#39;F-statistic&#39;: lambda x: &#39;{:.3f}&#39;.format(x.fvalue), </span>
+<span class="c1">#              &#39;Prob (F-statistic)&#39;: lambda x: &#39;{:.3f}&#39;.format(x.f_pvalue)</span>
+<span class="c1">#              }</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">summary_col</span><span class="p">([</span><span class="n">model_11</span><span class="p">,</span> <span class="n">model_12</span><span class="p">,</span> <span class="n">model_13</span><span class="p">],</span> <span class="n">stars</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">float_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================================================
+                       I(totwrk / 100) I(totwrk ** 2 / 10000)   male  
+----------------------------------------------------------------------
+I(totwrk ** 2 / 10000) 0.021***                               -0.000  
+                       (0.000)                                (0.000) 
+I(totwrk / 100)                        40.125***              0.021***
+                                       (0.609)                (0.005) 
+Intercept              9.003***        -296.595***            0.057   
+                       (0.498)         (23.551)               (0.085) 
+R-squared              0.882           0.879                  0.147   
+R-squared Adj.         0.881           0.878                  0.141   
+age                    -0.008          0.038                  0.002   
+                       (0.011)         (0.470)                (0.002) 
+male                   1.071***        -2.883                         
+                       (0.265)         (11.610)                       
+smsa                   0.357           -19.824*               0.008   
+                       (0.259)         (11.176)               (0.036) 
+south                  0.989***        -37.165***             -0.066  
+                       (0.327)         (14.148)               (0.046) 
+======================================================================
+Standard errors in parentheses.
+* p&lt;.1, ** p&lt;.05, ***p&lt;.01
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для totwrk/100 c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model_11</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">VIF_1</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для totwrk^2/10000 c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model_12</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">VIF_2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.28
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для male c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model_13</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>
+<span class="n">VIF_3</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.17
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># names of exog</span>
+<span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Intercept&#39;,
+ &#39;I(totwrk / 100)&#39;,
+ &#39;I(totwrk ** 2 / 10000)&#39;,
+ &#39;age&#39;,
+ &#39;smsa&#39;,
+ &#39;male&#39;,
+ &#39;south&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для totwrk/100 c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_1</span> <span class="o">=</span> <span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">exog</span> <span class="o">=</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span> <span class="n">exog_idx</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;VIF for exog&#39;</span><span class="p">,</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;: &#39;</span><span class="p">,</span> <span class="n">VIF_1</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VIF for exog I(totwrk / 100) :  8.48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для totwrk^2/10000 c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_2</span> <span class="o">=</span> <span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">exog</span> <span class="o">=</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span> <span class="n">exog_idx</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;VIF for exog&#39;</span><span class="p">,</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;: &#39;</span><span class="p">,</span> <span class="n">VIF_2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VIF for exog I(totwrk ** 2 / 10000) :  8.28
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VIF для male c округлением до 2-х десятичных знаков</span>
+<span class="n">VIF_3</span> <span class="o">=</span> <span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">exog</span> <span class="o">=</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span> <span class="n">exog_idx</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;VIF for exog&#39;</span><span class="p">,</span> <span class="n">Sleep_eq11</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;: &#39;</span><span class="p">,</span> <span class="n">VIF_3</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VIF for exog male :  1.17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h1>1.2 Последствия<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h1>
+<p>Для набора данных <code class="docutils literal notranslate"><span class="pre">sleep75</span></code> рассмотрим линейную регрессию
+<strong>sleep на totwrk/100, totwrk^2/10000, age, smsa, male</strong>.</p>
+<p>Результаты оценивания:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Модель sleep на totwrk/100, totwrk^2/10000, age, smsa, male</span>
+<span class="n">Sleep_eq12</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;sleep~I(totwrk/100)+I(totwrk**2/10000)+age+smsa+male&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;No. Observations&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{0:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">nobs</span><span class="p">)),</span> 
+             <span class="s1">&#39;Residual Std. Error&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%#8.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">x</span><span class="o">.</span><span class="n">mse_resid</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
+             <span class="s1">&#39;F-statistic&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">fvalue</span><span class="p">),</span> 
+             <span class="s1">&#39;Prob (F-statistic)&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">f_pvalue</span><span class="p">)</span>
+             <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary_col</span><span class="p">(</span><span class="n">Sleep_eq12</span><span class="p">,</span> <span class="n">float_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stars</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">info_dict</span> <span class="o">=</span> <span class="n">info_dict</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==================================
+                          sleep   
+----------------------------------
+Intercept              3428.805***
+                       (76.655)   
+I(totwrk / 100)        -8.195*    
+                       (4.789)    
+I(totwrk ** 2 / 10000) -0.214*    
+                       (0.111)    
+age                    2.817**    
+                       (1.387)    
+smsa                   -78.049**  
+                       (32.072)   
+male                   86.639**   
+                       (34.200)   
+R-squared              0.128      
+R-squared Adj.         0.122      
+No. Observations       706        
+Residual Std. Error    416.457    
+F-statistic            20.566     
+Prob (F-statistic)     0.000      
+==================================
+Standard errors in parentheses.
+* p&lt;.1, ** p&lt;.05, ***p&lt;.01
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">summary_params</span><span class="p">(</span><span class="n">Sleep_eq12</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;significance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;Значим&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;P&gt;|t|&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span> <span class="k">else</span> <span class="s1">&#39;Незначим&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef.</th>
+      <th>Std.Err.</th>
+      <th>t</th>
+      <th>P&gt;|t|</th>
+      <th>[0.025</th>
+      <th>0.975]</th>
+      <th>significance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Intercept</th>
+      <td>3428.804849</td>
+      <td>76.655048</td>
+      <td>44.730320</td>
+      <td>2.023213e-207</td>
+      <td>3278.303493</td>
+      <td>3579.306204</td>
+      <td>Значим</td>
+    </tr>
+    <tr>
+      <th>I(totwrk / 100)</th>
+      <td>-8.195316</td>
+      <td>4.789446</td>
+      <td>-1.711120</td>
+      <td>8.750201e-02</td>
+      <td>-17.598716</td>
+      <td>1.208085</td>
+      <td>Незначим</td>
+    </tr>
+    <tr>
+      <th>I(totwrk ** 2 / 10000)</th>
+      <td>-0.214156</td>
+      <td>0.110951</td>
+      <td>-1.930194</td>
+      <td>5.398646e-02</td>
+      <td>-0.431992</td>
+      <td>0.003680</td>
+      <td>Незначим</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>2.816697</td>
+      <td>1.386926</td>
+      <td>2.030892</td>
+      <td>4.264340e-02</td>
+      <td>0.093663</td>
+      <td>5.539731</td>
+      <td>Значим</td>
+    </tr>
+    <tr>
+      <th>smsa</th>
+      <td>-78.049460</td>
+      <td>32.072351</td>
+      <td>-2.433543</td>
+      <td>1.520105e-02</td>
+      <td>-141.018991</td>
+      <td>-15.079930</td>
+      <td>Значим</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>86.638759</td>
+      <td>34.199952</td>
+      <td>2.533301</td>
+      <td>1.151657e-02</td>
+      <td>19.491986</td>
+      <td>153.785532</td>
+      <td>Значим</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="age-smsa-male">
+<h2>На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”<a class="headerlink" href="#age-smsa-male" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+<section id="id5">
+<h1>Тестируется значимость влияния занятости, т.е. гипотеза<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="h-0-beta-totwrk-100-beta-totwrk-2-10000-0">
+<h1><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.<a class="headerlink" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># тестовая F_stat</span>
+<span class="n">Sleep_eq12</span><span class="o">.</span><span class="n">f_test</span><span class="p">(</span><span class="s1">&#39;I(totwrk / 100) = I(totwrk ** 2 / 10000)=0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;statsmodels.stats.contrast.ContrastResults&#39;&gt;
+&lt;F test: F=45.61921736003883, p=2.380853704323757e-19, df_denom=700, df_num=2&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># критическое значение F_crit</span>
+<span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.01
+</pre></div>
+</div>
+</div>
+</div>
+<section id="f-stat-f-crit">
+<h2>Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.<a class="headerlink" href="#f-stat-f-crit" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#VIFs</span>
+<span class="n">VIFS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;VIF&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">Sleep_eq12</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Sleep_eq12</span><span class="o">.</span><span class="n">df_model</span><span class="o">+</span><span class="mi">1</span><span class="p">))]},</span> <span class="n">index</span><span class="o">=</span><span class="n">Sleep_eq12</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span><span class="p">)</span>
+<span class="n">VIFS</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Intercept&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">VIFS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I(totwrk / 100)</th>
+      <td>8.370495</td>
+    </tr>
+    <tr>
+      <th>I(totwrk ** 2 / 10000)</th>
+      <td>8.199290</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>1.005968</td>
+    </tr>
+    <tr>
+      <th>smsa</th>
+      <td>1.004459</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>1.169198</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Матрица корреляций</span>
+<span class="n">df_sleep</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;smsa&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_sleep</span><span class="p">[</span><span class="s1">&#39;I(totwrk / 100)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_sleep</span><span class="p">[</span><span class="s1">&#39;totwrk&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span>
+<span class="n">df_sleep</span><span class="p">[</span><span class="s1">&#39;I(totwrk ** 2 / 10000)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_sleep</span><span class="p">[</span><span class="s1">&#39;totwrk&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">10000</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df_sleep</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">corr_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>male</th>
+      <th>age</th>
+      <th>smsa</th>
+      <th>I(totwrk / 100)</th>
+      <th>I(totwrk ** 2 / 10000)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>male</th>
+      <td>1.000</td>
+      <td>0.032</td>
+      <td>0.007</td>
+      <td>0.376</td>
+      <td>0.351</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>0.032</td>
+      <td>1.000</td>
+      <td>0.025</td>
+      <td>-0.050</td>
+      <td>-0.046</td>
+    </tr>
+    <tr>
+      <th>smsa</th>
+      <td>0.007</td>
+      <td>0.025</td>
+      <td>1.000</td>
+      <td>-0.038</td>
+      <td>-0.051</td>
+    </tr>
+    <tr>
+      <th>I(totwrk / 100)</th>
+      <td>0.376</td>
+      <td>-0.050</td>
+      <td>-0.038</td>
+      <td>1.000</td>
+      <td>0.937</td>
+    </tr>
+    <tr>
+      <th>I(totwrk ** 2 / 10000)</th>
+      <td>0.351</td>
+      <td>-0.046</td>
+      <td>-0.051</td>
+      <td>0.937</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Визуализация корреляций</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_corr</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">xnames</span><span class="o">=</span><span class="n">df_sleep</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">normcolor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8bf64114bc5b5f7b6d6fbbcd4bc8dc60f7017a89950e74c89478231c56e1860e.png" src="_images/8bf64114bc5b5f7b6d6fbbcd4bc8dc60f7017a89950e74c89478231c56e1860e.png" />
+</div>
+</div>
+<p>Документация: <a class="reference external" href="https://tedboy.github.io/statsmodels_doc/generated/statsmodels.graphics.api.plot_corr.html?highlight=plot_corr#statsmodels.graphics.api.plot_corr">https://tedboy.github.io/statsmodels_doc/generated/statsmodels.graphics.api.plot_corr.html?highlight=plot_corr#statsmodels.graphics.api.plot_corr</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Визуализация корреляций</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3g&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> 
+            <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># add customized title to heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Correlation Matrix&#39;)
+</pre></div>
+</div>
+<img alt="_images/541334f0ae408f8eb831d9c2e1700b9f2ad542bb1fd76c4836abd67dd227df7c.png" src="_images/541334f0ae408f8eb831d9c2e1700b9f2ad542bb1fd76c4836abd67dd227df7c.png" />
+</div>
+</div>
+<p>Документация: <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.heatmap.html">https://seaborn.pydata.org/generated/seaborn.heatmap.html</a></p>
+</section>
+<section id="id6">
+<h2>“Продвинутая” визуализация корреляций<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df_sleep</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># нижнетреугольная матрица корреляций</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3g&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<span class="c1"># add customized title to heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Correlation Matrix&#39;)
+</pre></div>
+</div>
+<img alt="_images/34d55fc89f4015d902c151d727bbff793ae09c7dc80382c452b1e80b2c75239e.png" src="_images/34d55fc89f4015d902c151d727bbff793ae09c7dc80382c452b1e80b2c75239e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df_sleep</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># верхнетреугольная матрица корреляций</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3g&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<span class="c1"># add customized title to heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Correlation Matrix&#39;)
+</pre></div>
+</div>
+<img alt="_images/3d76edd15337f350fdf4603d9c82d0692b2c3c8e1b6751588e68fee1225f50ba.png" src="_images/3d76edd15337f350fdf4603d9c82d0692b2c3c8e1b6751588e68fee1225f50ba.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fill diagonal and upper half with NaNs</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">corr_matrix</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="p">(</span><span class="n">corr_matrix</span>
+ <span class="o">.</span><span class="n">style</span>
+ <span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+ <span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">highlight_null</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">)</span>  <span class="c1"># Color NaNs grey</span>
+ <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">corr_matrix</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="p">(</span><span class="n">corr_matrix</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>  <span class="o">.</span><span class="n">style</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>  <span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>  <span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>  <span class="o">.</span><span class="n">highlight_null</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">)</span>  <span class="c1"># Color NaNs grey</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>  <span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix&#39;</span><span class="p">))</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.8/site-packages/pandas/core/frame.py:1264,</span> in <span class="ni">DataFrame.style</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1252</span> <span class="nd">@property</span>
+<span class="g g-Whitespace">   </span><span class="mi">1253</span> <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Styler</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1254</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1255</span><span class="sd">     Returns a Styler object.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1262</span><span class="sd">         data with HTML and CSS.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1263</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1264</span>     <span class="kn">from</span> <span class="nn">pandas.io.formats.style</span> <span class="kn">import</span> <span class="n">Styler</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="k">return</span> <span class="n">Styler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">formats</span><span class="o">/</span><span class="n">style</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">56</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="kn">from</span> <span class="nn">pandas.core.shared_docs</span> <span class="kn">import</span> <span class="n">_shared_docs</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="kn">from</span> <span class="nn">pandas.io.formats.format</span> <span class="kn">import</span> <span class="n">save_to_buffer</span>
+<span class="ne">---&gt; </span><span class="mi">56</span> <span class="n">jinja2</span> <span class="o">=</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;jinja2&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="s2">&quot;DataFrame.style requires jinja2.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="kn">from</span> <span class="nn">pandas.io.formats.style_render</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="n">CSSProperties</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="n">CSSStyles</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="n">refactor_levels</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.8/site-packages/pandas/compat/_optional.py:171,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>         <span class="k">elif</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">171</span>             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">return</span> <span class="n">module</span>
+
+<span class="ne">ImportError</span>: Pandas requires version &#39;3.0.0&#39; or newer of &#39;jinja2&#39; (version &#39;2.11.3&#39; currently installed).
+</pre></div>
+</div>
+</div>
+</div>
+<p>Документация:</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html">https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html</a></p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.formats.style.Styler.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.io.formats.style.Styler.html</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="List07.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Предсказанные значение (fitted) вычисляюся с помощью формулы</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dummies-categorial.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Бинарные переменные: категориальные переменные</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Листок 8: Мультиколлинеарность</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ссылка на листки, ноутбуки и данные</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ссылки на документацию</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sleep-equation-1">1 sleep equation #1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vifs">1.1 VIFs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 Последствия</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-smsa-male">На уровне значимости 5% значимы коэффициенты: “age”  “smsa” “male”</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Тестируется значимость влияния занятости, т.е. гипотеза</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-beta-totwrk-100-beta-totwrk-2-10000-0"><span class="math notranslate nohighlight">\(H_0:\beta_{totwrk/100}=\beta_{totwrk^2/10000}=0\)</span>.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-stat-f-crit">Так как F_stat &gt; F_crit, то гипотеза отвергается. Значит коэффициенты совместно значимы.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">“Продвинутая” визуализация корреляций</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
