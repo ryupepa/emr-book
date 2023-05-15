@@ -3,7 +3,6 @@
 
 format: jb-book
 root: intro
-title: Эконометрика. Кафедра МЭИТ МГИМО МИД России
 - chapter: Эконометрика 1
   sections:
   - file: OLS_3D
