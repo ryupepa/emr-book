@@ -1,18 +1,30 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: intro
-- chapters: Эконометрика 1
-  sections:
-  - file: OLS_3D
-  - file:  SleepEq1
-- chapters: Эконометрика 2
-  sections:
-  - file: List05
-  - file: List06
-  
-  
+chapters:
+- file: OLS_3D
+- file: SleepEq1
+- file: List04
+- file: List05
+- file: List06
+- file: List07
+- file: List8_fixed
+- file: dummies-categorial
+- file: List10
+- file: List11
+- file: List12
+# - part: A named part
+#   chapters:
+#   - file: chapter1
+#   - file: chapter2
+    
+# format: jb-book
+# - file: intro
+# - chapter: Эконометрика 1
+#   sections:
+#   - file: OLS_3D
+#   - file: SleepEq1
 
 # format: jb-book
 # root: intro
