@@ -3,14 +3,24 @@
 
 format: jb-book
 root: intro
-- chapter: Эконометрика 1
+- chapters: Эконометрика 1
   sections:
   - file: OLS_3D
   - file:  SleepEq1
-- chapter: Эконометрика 2
+- chapters: Эконометрика 2
   sections:
   - file: List05
   - file: List06
+  
+  
+
+# format: jb-book
+# root: intro
+# chapters:
+# - file: markdown
+# - file: notebooks
+# - file: markdown-notebooks
+# - file: mymarkdownfile
 
 #     chapters:
 #     - file: path/to/part2/chapter1
