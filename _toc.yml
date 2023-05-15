@@ -4,26 +4,33 @@
 format: jb-book
 root: intro
 title: Эконометрика. Кафедра МЭИТ МГИМО МИД России
-parts:
-  - caption: Эконометрика 1
-    numbered: True  # Only applies to chapters in Part 1.
-        chapters:
-        - file: OLS_3D
-        - file: SleepEq1
-        - file: List04
-        - file: List05
-        - file: List06
-        - file: List07
-        - file: List8_fixed
-        - file: dummies-categorial
-        - file: List10
-        - file: List11
-        - file: List12
-  - caption: Эконометрика 2
+- chapter: Эконометрика 1
+  sections:
+  - file: OLS_3D
+  - file:  SleepEq1
+- chapter: Эконометрика 2
+  sections:
+  - file: List05
+  - file: List06
+
 #     chapters:
 #     - file: path/to/part2/chapter1
 #     - file: path/to/part2/chapter2
-    
+#     parts:
+#   - caption: Эконометрика 1
+#     numbered: True  # Only applies to chapters in Part 1.
+#         chapters:
+#         - file: OLS_3D
+#         - file: SleepEq1
+#         - file: List04
+#         - file: List05
+#         - file: List06
+#         - file: List07
+#         - file: List8_fixed
+#         - file: dummies-categorial
+#         - file: List10
+#         - file: List11
+#         - file: List12
 # chapters:
 # - file: OLS_3D
 # - file: SleepEq1
